@@ -141,6 +141,43 @@ important because if the ship stops following the mouse, you could look in the s
 That's how you make a nice flow in main.
 
 Some other cool tricks I used in this mini-project were overlapping different images and changing them/making them visible on click events - this
-was especially useful when firing the gun of the ship. (It also looks very nice because it's a pre-rendered gif!). There were also two different ways to animate that I used. Animate.css for the title page and jquery.animate() for moving the computer's shooting girl.
+was especially useful when firing the gun of the ship. (It also looks very nice because it's a pre-rendered gif!). The gifs in this example come 
+from one of my favorite games - Metal Slug. Pixel graphic games are good resources to get gifs because the sprite library for them was already premade
+for their game. The title font I got with the help of Kolin and it comes from the title font of the spoof-film Kung Fury (which is highly recommended if you
+haven't seen it).
 
-That's it! Hope you learned something about functions!
+Speaking of the title I used animate.css to make it move, which was another one of the goals of the project. Here is a brief explanation of how I did it: 
+
+@keyframes slide {
+  0% {
+    left: 25%;
+    top: 0%;
+  }
+  50% {
+    left: 24.5%;
+    top: -0.5%;
+  }
+  100% {
+    left: 25.5%;
+    top: 0.75%;
+  }
+}
+
+
+@keyframes fade{
+	0%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0.8;
+	}
+}
+
+.titleoverlay{
+	color: #FF9200;
+    animation: 
+    fade 6s ease infinite alternate, 
+    slide 3s linear infinite alternate;
+}
+
+So these are the three main parts. The @keyframes declaration is a way to declare new variables in CSS that take common css variables and change them over a percentage. When those variables are then called in the rest of the css there is a time indicator in seconds that tells the computer how fast to iterate over the transition. That's the 6s and 3s under .titleoverlay. You also have the options to ease into a transition (slowing when you near an end point) or do the transition linearly. The options infinite alternate makes the transitions go in a loop, back and forth.
