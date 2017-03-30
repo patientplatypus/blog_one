@@ -1,0 +1,146 @@
+
+Blog Title: Making a Quick Game in HTML/CSS/JQUERY with Function Best Practices
+
+
+For my blog post I decided to try and get as far as I could with a simple game as possible.
+
+My goal was to find out if I could make a game with a lot of functionallity, but also in a way that was very
+modular and easy to read. This meant that I wanted to break up all the pieces of my game up into functions, 
+and have the timeline easy to follow.
+
+The game was a simple gallery shooter, with the computer going first, spraying random bullets at a target. Then
+the player goes and tries and hits the targets. All of the added pieces of the functionallity come from things like 
+calculating the score on every hit target, adding those scores together, making the computer shooting girl move etc. 
+However, because everything is easily named and siloed in my main function its pretty easy to follow.
+
+Let's take a look. 
+
+
+	function main(){
+
+		//onclick events
+		$(".fa-bars").on("click",function(){
+			$(".container").css("display", "inline-block");
+			$(".container").addClass('animated slideInLeft');
+		});
+		
+		//This first bit is an on click container. It's functionality INSIDE the main, which is an example of what shouldn't be done.
+
+
+		buttonsAlign();
+
+		//This function aligns the player start and turn buttons against the title.
+
+
+		$(".startbutton").on("click",function(){
+
+			//Here I have a startbutton click! Pretty obvious what that does!
+
+
+			startButtonanimation();
+
+			//animates the start button when its clicked - here it just turns its display to none.
+
+			turnButton("COMPUTERS TURN");
+
+			//turn placard
+
+
+			setTimeout(function(){
+				for(var i=1; i<10; i++){
+					targetArraymake(i);
+
+					//Here I make all the targets and put them in the right places!
+
+				}
+
+				scoreboardAdjust();
+
+					//Here I adjust the scoreboard to the right place!
+
+				tallyScore(0,"COMPUTER");
+
+					//Here I initialize the scoreboard for the computers turn
+
+
+				for(var i=1; i<10; i++){
+					bulletArraymake(i);
+
+					//Here I have the bullets assigned to random places in all of the targets (though they're still invisible)
+
+				}
+
+				for(var i=1; i<10; i++){
+					bulletFire(i);
+					//The bullets become visible and make a "BANG!" noise!
+				}
+		
+
+				computershoot();
+					//Here's the animation for the girl shooter sliding left in time to the bullets
+
+
+				//animateScore(); // this function not implemented yet!
+
+
+			},2500);
+
+
+			setTimeout(function(){
+
+				cleanUpgamefield();
+
+				//this resets all the targets for the new player
+
+				turnButton("PLAYERS TURN");
+
+				//placard for player
+
+				crosshairsAdjust();
+
+				//put crosshairs in front of ship!
+
+				//yoyoCrosshairs(); this function not implemented yet!
+
+				setTimeout(function(){
+					shipFollowmouse();
+
+					//hey look this makes it so the ship follows the mouse!
+
+					$(restingship).on("click",function(){
+						$(shootership).css("display","block");
+						setTimeout(function(){
+							$(shootership).css("display","none");
+						},500);
+
+						//really should have this overlay for the firing ship and the non-firing ship in its own function!
+
+
+					});
+
+					shipBulletfire();
+
+					//this has the ship fire a bullet when there's a click!
+
+
+
+				},2500);
+
+
+			}, 15000)
+			
+
+
+		});
+
+	}
+
+
+As you can see, it's pretty easy to follow the flow of the functions, even if you don't know what the functions do per se. This is very
+important because if the ship stops following the mouse, you could look in the shipFollowmouse() function to try and fix it. So that's it!
+That's how you make a nice flow in main.
+
+Some other cool tricks I used in this mini-project were overlapping different images and changing them/making them visible on click events - this
+was especially useful when firing the gun of the ship. (It also looks very nice because it's a pre-rendered gif!). There were also two different ways to animate that I used. Animate.css for the title page and jquery.animate() for moving the computer's shooting girl.
+
+That's it! Hope you learned something about functions!
