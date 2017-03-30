@@ -68,6 +68,26 @@ http://clipart-library.com/images/ziXL9zBiB.gif
   }
 }
 
+@keyframes cannonslide{
+
+  0% {
+    left: 25%;
+    top: 0%;
+  }
+  50% {
+    left: 24.5%;
+    top: -0.5%;
+  }
+  100% {
+    left: 25.5%;
+    top: 0.75%;
+  }
+
+
+}
+
+
+
 @keyframes fade{
 	0%{
 		opacity: 1;
@@ -143,15 +163,30 @@ html, body{
     position: absolute; 
 }
 
-.computershooter{
+.shootership{
+	display: none;
 	background-image: url('https://media.giphy.com/media/o2aGK0fnhrV04/giphy.gif');
 	background-size: cover;
 	position: absolute;
 	height: 1500px;
 	width: 600px;
+	top: 0px;
+	left: 0px;
+}
+
+.restingship{
+	display:none;
+	background-image: url('https://media.giphy.com/media/kMvAJYxgx77IA/giphy.gif');
+	background-size: cover;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	height: 800px;
+	width: 800px;
 }
 
 .target {
+	display: none;
 	width: 200px;
 	height: 200px;
 	background-image: url('http://www.pistoleer.com/shooting-targets/pics/SR1.gif');
@@ -174,3 +209,62 @@ html, body{
 	color: red;
 	font-size: 50px;
 }
+
+.scoreboard{
+	display: block;
+	font-family: 'Press Start 2P', cursive;
+	/*background-color: black;*/
+	color: white;
+}
+
+.startbutton{
+	
+	background-color: black;
+	color: white;
+	height: 100px;
+	width: 500px;
+	text-align: center;
+	display: block;
+	z-index: 99999;
+	font-size: 50px;
+	font-family: 'Press Start 2P', cursive;
+	z-index: 10;
+}
+
+.turn{
+	opacity: 0;
+	background-color: black;
+	color: white;
+	height: 100px;
+	width: 500px;
+	text-align: center;
+	display: block;
+	z-index: 99999;
+	font-size: 50px;
+	font-family: 'Press Start 2P', cursive;
+}
+
+.computercannon{
+	display: none;
+	width: 1000px;
+	height: 1000px;
+	background-image: url('https://media.giphy.com/media/nWj8AZ4mLeja8/giphy.gif');
+    background-size: cover;
+    position: absolute; 
+}
+
+
+.crosshairs{
+	display: block;
+	width: 40px;
+	height: 40px;
+	top: 500px;
+	left: 500px;
+	background-image: url('https://media.giphy.com/media/STn4gPeEh3Pdm/giphy.gif');
+    background-size: cover;
+    position: absolute; 
+}
+
+
+
+
