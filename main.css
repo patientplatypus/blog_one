@@ -1,0 +1,176 @@
+/*
+HEX COLOR PALETTE 
+http://paletton.com/#uid=70f0u0kllll5ph-5ImCJSk3KOB6
+
+RED 
+--BRIGHT #FF4900
+--DULL #A02E00
+
+ORANGE 
+--BRIGHT #FF9200
+--DULL #A05C00
+
+BLUE
+--BRIGHT #0669B5
+--DULL #043C67
+
+GREEN
+--BRIGHT #00BE6D
+--DULL #006E3F
+
+LINEAR GRADIENTS
+https://webgradients.com/
+
+005 YOUNG PASSION
+background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
+
+0012 TEMPTING AZURE
+background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+
+0022 MORPHEUS DEN
+background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+
+bullet image 
+
+http://i.imgur.com/YOjHYjH.gif
+https://jsfiddle.net/rx04r6z8/
+http://stackoverflow.com/questions/34386361/shooting-targets-on-mouse-click-leave-bullet-hole-gif
+
+target image
+http://www.pistoleer.com/shooting-targets/pics/SR1.gif
+http://clipart-library.com/clipart/ziXL9zBiB.htm
+http://clipart-library.com/images/ziXL9zBiB.gif
+
+*/
+
+
+
+
+
+@font-face {
+    font-family: road_rage;
+    src: url(Road_Rage.otf);
+}
+
+
+@keyframes slide {
+  0% {
+    left: 25%;
+    top: 0%;
+  }
+  50% {
+    left: 24.5%;
+    top: -0.5%;
+  }
+  100% {
+    left: 25.5%;
+    top: 0.75%;
+  }
+}
+
+@keyframes fade{
+	0%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0.8;
+	}
+}
+
+
+html, body{
+    height:100%;
+    width: 100%;
+    font-family: "Baloo Bhaina", sans-serif;
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+}
+.container{
+	display: none;
+    width:100%;
+    height:100%;
+    /*border:1px solid red;*/
+}
+
+.title, .titleoverlay{
+	font-family: "road_rage";
+	font-size: 200px;
+	color: #00BE6D;
+	display: inline-block;
+	/*margin: 0 auto;*/
+	/*left: 30%;*/
+	text-align: center;
+	position: absolute;
+    left: 25%;
+    top: 0%;
+}
+
+.titleoverlay{
+	color: #FF9200;
+    animation: 
+    fade 6s ease infinite alternate, 
+    slide 3s linear infinite alternate;
+}
+
+.sidebar{
+ 	margin-top: 0.5%;
+ 	margin-bottom: 0.5%;
+    width:25%;
+    height:100%;
+    background: #0669B5;
+    color: #FF9200;
+    border-radius: 40%;
+    text-align: center;
+	font-size: 25px;
+}
+
+.fa-bars{
+	width: 100px;
+	height: auto;
+	display: inline-block;
+	text-align: center;
+	border-radius: 30%;
+	/*color: #FF9200;*/
+	background-color: #FF9200
+
+}
+
+.bullet-hole {
+	display: none; 
+    width: 50px;
+    height: 50px;
+    background-image: url('http://i.imgur.com/YOjHYjH.gif');
+    background-size: cover;
+    position: absolute; 
+}
+
+.computershooter{
+	background-image: url('https://media.giphy.com/media/o2aGK0fnhrV04/giphy.gif');
+	background-size: cover;
+	position: absolute;
+	height: 1500px;
+	width: 600px;
+}
+
+.target {
+	width: 200px;
+	height: 200px;
+	background-image: url('http://www.pistoleer.com/shooting-targets/pics/SR1.gif');
+    background-size: cover;
+    position: absolute; 
+}
+
+.subtitle{
+	display: none;
+}
+
+.score{
+	display: none;
+	height: 50px;
+	width: 200px;
+	position: absolute;
+	text-align: center;
+	display: block;
+	z-index: 1000;
+	color: red;
+	font-size: 50px;
+}
