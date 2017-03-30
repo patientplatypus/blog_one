@@ -29,6 +29,7 @@ var scoretotal = 0;
 var opacityvar = 1.0;
 var crosshairsize = 40;
 var crosshairadd = 1;
+var shipbulletshit = 0;
 
 //utility function
 
@@ -42,6 +43,10 @@ function adjustoffset(base, adjusted, leftadjust, topadjust){
 		//console.log(adjusted, " left ", $(adjusted).offset().left, " top ", $(adjusted).offset().top);
 		return newPos;
 	});
+
+
+
+
 
 	
 	//console.log("adjusted after offset: ",$(adjusted).offset());
@@ -221,7 +226,59 @@ function bulletHide(){
 	}
 };
 
+function emptyArrays(){
+	bulletCenterarray = [];
+    targetCenterarray = [];
+}
 
+
+function cleanUpgamefield(){
+	scoreHide();
+	bulletHide();
+	emptyArrays();
+}
+
+function shipBulletfire(){
+	$(document).on("mousedown", function(){
+
+		function overlapDetector($div1, $div2) {
+	      var x1 = $div1.offset().left;
+    	  var y1 = $div1.offset().top;
+      	  var h1 = $div1.outerHeight(true);
+      	  var w1 = $div1.outerWidth(true);
+          var b1 = y1 + h1;
+          var r1 = x1 + w1;
+          var x2 = $div2.offset().left;
+          var y2 = $div2.offset().top;
+          var h2 = $div2.outerHeight(true);
+          var w2 = $div2.outerWidth(true);
+          var b2 = y2 + h2;
+          var r2 = x2 + w2;
+
+		      if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+		      return true;
+ 		 }
+
+		//var crosshairstopadjusted = crosshairs.css("top") + 20;
+		//var crosshairsleftadjusted = crosshairs.css("left") + 20;
+		var gunshotsound = new Audio('Gunshot-sound-effect.wav');
+
+		console.log("Hey! ", crosshairs.css("top"), " ", crosshairs.css("left"));
+
+		for (var i = 1; i<10; i++){
+			targetnumber = ".target" + i.toString();
+			if (overlapDetector($(crosshairs), $(targetnumber))){
+				bulletnumber = ".bullet" + i.toString();
+				$(bulletnumber).css("top", (parseFloat(crosshairs.css("top")) + parseFloat(5)).toString()+"px");
+				$(bulletnumber).css("left", (parseFloat(crosshairs.css("left")) + parseFloat(5)).toString()+"px");
+				//console.log(crosshairs.css("top").val() + parseFloat(5));
+				//console.log(crosshairs.css("left").val() + parseFloat(5));
+				$(bulletnumber).css("display", "block");
+			}
+		}
+
+	});
+}
 
 function crosshairsAdjust(){
 
@@ -304,9 +361,7 @@ $(function(){
 
 			setTimeout(function(){
 
-				scoreHide();
-
-				bulletHide();
+				cleanUpgamefield();
 
 				turnButton("PLAYERS TURN");
 
@@ -323,6 +378,11 @@ $(function(){
 							$(shootership).css("display","none");
 						},500);
 					});
+
+					shipBulletfire();
+
+
+
 				},2500);
 
 
