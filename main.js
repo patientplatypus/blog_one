@@ -22,10 +22,13 @@ var restingship = $(".restingship");
 var startbutton = $(".startbutton");
 var computercannon = $(".computercannon");
 var scoreboard = $(".scoreboard");
+var crosshairs = $(".crosshairs");
 var title = ".title"
 var turn = $(".turn");
 var scoretotal = 0;
 var opacityvar = 1.0;
+var crosshairsize = 40;
+var crosshairadd = 1;
 
 //utility function
 
@@ -219,6 +222,38 @@ function bulletHide(){
 };
 
 
+
+function crosshairsAdjust(){
+
+	crosshairs.css("display", "block");
+	setInterval(function(){
+		adjustoffset(restingship, crosshairs,0.45,-0.9);
+	},100);
+
+
+}
+
+function yoyoCrosshairs(){
+	
+	//do something to make the crosshairs go in and out and make the game more intresting.:P
+
+	/*	
+	$(document).mousedown(function(e){
+			crosshairsize = crosshairsize + crosshairadd;
+			if (crosshairsize>60||crosshairsize<20){
+				crosshairadd=-1*crosshairadd
+			}
+			crosshairs.css({width:crosshairsize,height:crosshairsize});
+	});
+
+	$(document).mouseup(function(e){
+
+	});
+	*/
+}
+
+
+
 $(function(){
 
 	function main(){
@@ -256,14 +291,12 @@ $(function(){
 				for(var i=1; i<10; i++){
 					bulletFire(i);
 				}
-				//console.log("score total from main: ", scoretotal);
-				//scoreboard.html("<p> COMPUTER SCORE: " + scoretotal + "</p>");
-				//debugger;
+		
 
 				computershoot();
 
 
-				animateScore();
+				//animateScore(); // this function not implemented yet!
 
 
 			},2500);
@@ -277,6 +310,9 @@ $(function(){
 
 				turnButton("PLAYERS TURN");
 
+				crosshairsAdjust();
+
+				//yoyoCrosshairs(); this function not implemented yet!
 
 				setTimeout(function(){
 					shipFollowmouse();
